@@ -4,12 +4,13 @@ import s from './Swatch.module.css'
 import { Check } from '@components/icons'
 import Button, { ButtonProps } from '@components/ui/Button'
 import { isDark } from '@lib/colors'
+
 interface SwatchProps {
   active?: boolean
   children?: any
   className?: string
   variant?: 'size' | 'color' | string
-  color?: string
+  color?: 'yellow' | 'pink' | string
   label?: string | null
 }
 
@@ -39,6 +40,14 @@ const Swatch: React.FC<Omit<ButtonProps, 'variant'> & SwatchProps> = ({
     className
   )
 
+  const colorName = (color: string) => {
+    if (color === 'yellow') {
+      return '#eab308'
+    } else if (color === 'pink') {
+      return '#ec4899'
+    }
+  }
+
   return (
     <Button
       role="option"
@@ -46,7 +55,7 @@ const Swatch: React.FC<Omit<ButtonProps, 'variant'> & SwatchProps> = ({
       aria-label={variant && label ? `${variant} ${label}` : 'Variant Swatch'}
       className={swatchClassName}
       {...(label && color && { title: label })}
-      style={color ? { backgroundColor: color } : {}}
+      style={color ? { backgroundColor: colorName(color) } : {}}
       {...props}
     >
       {color && active && (
@@ -54,7 +63,7 @@ const Swatch: React.FC<Omit<ButtonProps, 'variant'> & SwatchProps> = ({
           <Check />
         </span>
       )}
-      {!color ? label : null}
+      <span className="text-[12px]">{!color ? label : null}</span>
     </Button>
   )
 }

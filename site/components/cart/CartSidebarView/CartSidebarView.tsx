@@ -1,6 +1,6 @@
 import cn from 'clsx'
 import Link from 'next/link'
-import { FC } from 'react'
+import { FC, useState, useEffect } from 'react'
 import s from './CartSidebarView.module.css'
 import CartItem from '../CartItem'
 import { Button, Text } from '@components/ui'
@@ -9,10 +9,15 @@ import { Bag, Cross, Check } from '@components/icons'
 import useCart from '@framework/cart/use-cart'
 import usePrice from '@framework/product/use-price'
 import SidebarLayout from '@components/common/SidebarLayout'
+import { handler } from '@framework/checkout/use-checkout'
 
 const CartSidebarView: FC = () => {
   const { closeSidebar, setSidebarView } = useUI()
   const { data, isLoading, isEmpty } = useCart()
+
+  useEffect(() => {
+    console.log(handler)
+  })
 
   const { price: subTotal } = usePrice(
     data && {
@@ -20,6 +25,7 @@ const CartSidebarView: FC = () => {
       currencyCode: data.currency.code,
     }
   )
+
   const { price: total } = usePrice(
     data && {
       amount: Number(data.totalPrice),
@@ -41,15 +47,13 @@ const CartSidebarView: FC = () => {
     >
       {isLoading || isEmpty ? (
         <div className="flex-1 px-4 flex flex-col justify-center items-center">
-          <span className="border border-dashed border-primary rounded-full flex items-center justify-center w-16 h-16 p-12 bg-secondary text-secondary">
+          <span className="border border-dashed border-primary rounded-full flex items-center justify-center w-16 h-16 p-12 bg-brand-secondary text-secondary">
             <Bag className="absolute" />
           </span>
           <h2 className="pt-6 text-2xl font-bold tracking-wide text-center">
             Your cart is empty
           </h2>
-          <p className="text-accent-3 px-10 text-center pt-2">
-            Biscuit oat cake wafer icing ice cream tiramisu pudding cupcake.
-          </p>
+          <p className="text-accent-3 px-10 text-center pt-2">:&apos;&#40;</p>
         </div>
       ) : error ? (
         <div className="flex-1 px-4 flex flex-col justify-center items-center">
@@ -57,7 +61,7 @@ const CartSidebarView: FC = () => {
             <Cross width={24} height={24} />
           </span>
           <h2 className="pt-6 text-xl font-light text-center">
-            We couldn’t process the purchase. Please check your card information
+            We couldn't process the purchase. Please check your card information
             and try again.
           </h2>
         </div>
@@ -103,7 +107,9 @@ const CartSidebarView: FC = () => {
               </li>
               <li className="flex justify-between py-1">
                 <span>Shipping</span>
-                <span className="font-bold tracking-wide">FREE</span>
+                <span>
+                  Calculated at checkout
+                </span>
               </li>
             </ul>
             <div className="flex justify-between border-t border-accent-2 py-3 font-bold mb-2">
@@ -112,7 +118,12 @@ const CartSidebarView: FC = () => {
             </div>
             <div>
               {process.env.COMMERCE_CUSTOMCHECKOUT_ENABLED ? (
-                <Button Component="a" width="100%" onClick={goToCheckout}>
+                <Button
+                  Component="a"
+                  width="100%"
+                  onClick={goToCheckout}
+                  className="!bg-brand-secondary !text-primary !font-bold !rounded-lg !border-0 hover:!bg-brand-secondary-dark"
+                >
                   Proceed to Checkout ({total})
                 </Button>
               ) : (

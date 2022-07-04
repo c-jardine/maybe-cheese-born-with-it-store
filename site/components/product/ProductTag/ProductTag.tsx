@@ -17,18 +17,12 @@ const ProductTag: React.FC<ProductTagProps> = ({
 }) => {
   return (
     <div className={cn(s.root, className)}>
-      <h3 className={s.name}>
-        <span
-          className={cn({ [s.fontsizing]: fontSize < 32 })}
-          style={{
-            fontSize: `${fontSize}px`,
-            lineHeight: `${fontSize}px`,
-          }}
-        >
+      <h3>
+        <span className="font-display text-brand-secondary text-2xl sm:text-4xl font-extrabold [text-shadow:_-2px_2px_0px_#CE5937]">
           {name}
         </span>
       </h3>
-      <div className={s.price}>{price}</div>
+      <div className={`${s.price} rounded-br-lg`}>{price}</div>
     </div>
   )
 }

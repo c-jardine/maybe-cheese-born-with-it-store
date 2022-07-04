@@ -1,3 +1,5 @@
+const colors = require('tailwindcss/colors')
+
 module.exports = {
   content: [
     './pages/**/*.{js,ts,jsx,tsx}',
@@ -10,6 +12,11 @@ module.exports = {
         '8xl': '1920px',
       },
       colors: {
+        'brand-primary-light': 'var(--brand-primary-light)',
+        'brand-primary': 'var(--brand-primary)',
+        'brand-secondary-light': 'var(--brand-secondary-light)',
+        'brand-secondary': 'var(--brand-secondary)',
+        'brand-secondary-dark': 'var(--brand-secondary-dark)',
         primary: 'var(--primary)',
         'primary-2': 'var(--primary-2)',
         secondary: 'var(--secondary)',
@@ -36,6 +43,11 @@ module.exports = {
         blue: 'var(--blue)',
         green: 'var(--green)',
         red: 'var(--red)',
+      },
+      fontFamily: {
+        sans: ['Montserrat'],
+        handwriting: ['"Nothing You Could Do"'],
+        display: ['"Train One"'],
       },
       textColor: {
         base: 'var(--text-base)',

@@ -33,13 +33,13 @@ const Searchbar: FC<Props> = ({ className, id = 'search' }) => {
   }
 
   return (
-    <div className={cn(s.root, className)}>
-      <label className="hidden" htmlFor={id}>
+    <div className="relative h-8 w-full mx-2">
+      <label className="sr-only" htmlFor={id}>
         Search
       </label>
       <input
         id={id}
-        className={s.input}
+        className="absolute text-sm h-full py-5 top-1/2 lg:hover:border-brand-secondary focus:outline-none lg:focus:border-brand-secondary border-2 border-secondary rounded-lg placeholder:text-accent-5 -translate-y-1/2 w-full px-2 bg-white transition"
         placeholder="Search for products..."
         defaultValue={router.query.q}
         onKeyUp={handleKeyUp}

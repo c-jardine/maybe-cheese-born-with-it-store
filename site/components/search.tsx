@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { useState } from 'react'
 import { useRouter } from 'next/router'
 
-import { Layout } from '@components/common'
+import { Layout, Searchbar } from '@components/common'
 import { ProductCard } from '@components/product'
 import type { Product } from '@commerce/types/product'
 import { Container, Skeleton } from '@components/ui'
@@ -24,7 +24,6 @@ const SORT = {
 import {
   filterQuery,
   getCategoryPath,
-  getDesignerPath,
   useSearchMeta,
 } from '@lib/search'
 
@@ -64,17 +63,22 @@ export default function Search({ categories, brands }: SearchPropsType) {
   }
 
   return (
-    <Container>
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 mt-3 mb-20">
-        <div className="col-span-8 lg:col-span-2 order-1 lg:order-none">
-          {/* Categories */}
+    <Container className="relative px-2 xl:px-0">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:max-w-7xl lg:px-8 relative grid grid-cols-12 gap-4 lg:gap-0">
+        {/* Categories */}
+        <div className="col-span-12 sm:col-span-6 lg:col-span-2 order-1 lg:order-1">
           <div className="relative inline-block w-full">
             <div className="lg:hidden">
               <span className="rounded-md shadow-sm">
                 <button
                   type="button"
                   onClick={(e) => handleClick(e, 'categories')}
-                  className="flex justify-between w-full rounded-sm border border-accent-3 px-4 py-3 bg-accent-0 text-sm leading-5 font-medium text-accent-4 hover:text-accent-5 focus:outline-none focus:border-blue-300 focus:shadow-outline-normal active:bg-accent-1 active:text-accent-8 transition ease-in-out duration-150"
+                  className={`flex justify-between w-full rounded-lg px-4 py-3 bg-primary border-2 border-secondary lg:border-0 text-sm leading-5 font-bold text-primary hover:bg-brand-secondary focus:outline-none transition ease-in-out duration-150
+                  ${
+                    activeFilter !== 'categories' || toggleFilter !== true
+                      ? 'rounded-b-lg'
+                      : 'rounded-b-none'
+                  }`}
                   id="options-menu"
                   aria-haspopup="true"
                   aria-expanded="true"
@@ -98,13 +102,13 @@ export default function Search({ categories, brands }: SearchPropsType) {
               </span>
             </div>
             <div
-              className={`origin-top-left absolute lg:relative left-0 mt-2 w-full rounded-md shadow-lg lg:shadow-none z-10 mb-10 lg:block ${
+              className={`origin-top-left absolute lg:relative left-0 w-full rounded-lg shadow-lg lg:shadow-none z-10 mb-10 lg:block ${
                 activeFilter !== 'categories' || toggleFilter !== true
                   ? 'hidden'
                   : ''
               }`}
             >
-              <div className="rounded-sm bg-accent-0 shadow-xs lg:bg-none lg:shadow-none">
+              <div className="bg-brand-secondary lg:bg-primary border-x-2 border-b-2 border-secondary lg:border-0 rounded-b-lg lg:rounded-b-none">
                 <div
                   role="menu"
                   aria-orientation="vertical"
@@ -113,7 +117,7 @@ export default function Search({ categories, brands }: SearchPropsType) {
                   <ul>
                     <li
                       className={cn(
-                        'block text-sm leading-5 text-accent-4 lg:text-base lg:no-underline lg:font-bold lg:tracking-wide hover:bg-accent-1 lg:hover:bg-transparent hover:text-accent-8 focus:outline-none focus:bg-accent-1 focus:text-accent-8',
+                        'block text-sm leading-5 text-black lg:text-base font-bold no-underline lg:font-bold lg:tracking-wide hover:bg-brand-secondary-dark lg:hover:bg-transparent hover:text-accent-8 focus:outline-none focus:bg-accent-1 focus:text-accent-8',
                         {
                           underline: !activeCategory?.name,
                         }
@@ -136,7 +140,9 @@ export default function Search({ categories, brands }: SearchPropsType) {
                       <li
                         key={cat.path}
                         className={cn(
-                          'block text-sm leading-5 text-accent-4 hover:bg-accent-1 lg:hover:bg-transparent hover:text-accent-8 focus:outline-none focus:bg-accent-1 focus:text-accent-8',
+                          `block text-sm leading-5 text-accent-7 hover:bg-brand-secondary-dark lg:hover:bg-transparent hover:text-primary no-underline ${
+                            activeCategory?.id === cat.id ? 'font-bold' : ''
+                          } lg:hover:bg-transparent lg:hover:text-primary focus:outline-none`,
                           {
                             underline: activeCategory?.id === cat.id,
                           }
@@ -164,22 +170,27 @@ export default function Search({ categories, brands }: SearchPropsType) {
               </div>
             </div>
           </div>
+        </div>
 
-          {/* Designs */}
+        {/* Sort */}
+        <div className="col-span-12 sm:col-span-6 lg:col-span-2 order-2 lg:order-3">
           <div className="relative inline-block w-full">
-            <div className="lg:hidden mt-3">
+            <div className="lg:hidden">
               <span className="rounded-md shadow-sm">
                 <button
                   type="button"
-                  onClick={(e) => handleClick(e, 'brands')}
-                  className="flex justify-between w-full rounded-sm border border-accent-3 px-4 py-3 bg-accent-0 text-sm leading-5 font-medium text-accent-8 hover:text-accent-5 focus:outline-none focus:border-blue-300 focus:shadow-outline-normal active:bg-accent-1 active:text-accent-8 transition ease-in-out duration-150"
+                  onClick={(e) => handleClick(e, 'sort')}
+                  className={`flex justify-between w-full rounded-lg px-4 py-3 bg-primary border-2 border-secondary lg:border-0 text-sm leading-5 font-bold text-primary hover:bg-brand-secondary focus:outline-none transition ease-in-out duration-150
+                  ${
+                    activeFilter !== 'sort' || toggleFilter !== true
+                      ? 'rounded-b-lg'
+                      : 'rounded-b-none'
+                  }`}
                   id="options-menu"
                   aria-haspopup="true"
                   aria-expanded="true"
                 >
-                  {activeBrand?.name
-                    ? `Design: ${activeBrand?.name}`
-                    : 'All Designs'}
+                  {sort ? SORT[sort as keyof typeof SORT] : 'Relevance'}
                   <svg
                     className="-mr-1 ml-2 h-5 w-5"
                     xmlns="http://www.w3.org/2000/svg"
@@ -196,13 +207,11 @@ export default function Search({ categories, brands }: SearchPropsType) {
               </span>
             </div>
             <div
-              className={`origin-top-left absolute lg:relative left-0 mt-2 w-full rounded-md shadow-lg lg:shadow-none z-10 mb-10 lg:block ${
-                activeFilter !== 'brands' || toggleFilter !== true
-                  ? 'hidden'
-                  : ''
+              className={`origin-top-left absolute lg:relative left-0 w-full shadow-lg lg:shadow-none z-10 mb-10 lg:block ${
+                activeFilter !== 'sort' || toggleFilter !== true ? 'hidden' : ''
               }`}
             >
-              <div className="rounded-sm bg-accent-0 shadow-xs lg:bg-none lg:shadow-none">
+              <div className="bg-brand-secondary lg:bg-primary border-x-2 border-b-2 border-secondary lg:border-0 rounded-b-lg lg:rounded-b-none">
                 <div
                   role="menu"
                   aria-orientation="vertical"
@@ -211,52 +220,47 @@ export default function Search({ categories, brands }: SearchPropsType) {
                   <ul>
                     <li
                       className={cn(
-                        'block text-sm leading-5 text-accent-4 lg:text-base lg:no-underline lg:font-bold lg:tracking-wide hover:bg-accent-1 lg:hover:bg-transparent hover:text-accent-8 focus:outline-none focus:bg-accent-1 focus:text-accent-8',
+                        'block text-sm leading-5 text-black lg:text-base font-bold no-underline lg:font-bold lg:tracking-wide hover:bg-brand-secondary-dark lg:hover:bg-transparent hover:text-accent-8 focus:outline-none focus:bg-accent-1 focus:text-accent-8',
                         {
-                          underline: !activeBrand?.name,
+                          underline: !sort,
                         }
                       )}
                     >
-                      <Link
-                        href={{
-                          pathname: getDesignerPath('', category),
-                          query,
-                        }}
-                      >
+                      <Link href={{ pathname, query: filterQuery({ q }) }}>
                         <a
-                          onClick={(e) => handleClick(e, 'brands')}
+                          onClick={(e) => handleClick(e, 'sort')}
                           className={
                             'block lg:inline-block px-4 py-2 lg:p-0 lg:my-2 lg:mx-4'
                           }
                         >
-                          All Designers
+                          Relevance
                         </a>
                       </Link>
                     </li>
-                    {brands.flatMap(({ node }: { node: any }) => (
+                    {Object.entries(SORT).map(([key, text]) => (
                       <li
-                        key={node.path}
+                        key={key}
                         className={cn(
-                          'block text-sm leading-5 text-accent-4 hover:bg-accent-1 lg:hover:bg-transparent hover:text-accent-8 focus:outline-none focus:bg-accent-1 focus:text-accent-8',
+                          'block text-sm leading-5 text-accent-7 hover:bg-brand-secondary-dark lg:hover:bg-transparent hover:text-primary no-underline',
+                          sort === key ? 'font-bold' : '',
                           {
-                            // @ts-ignore Shopify - Fix this types
-                            underline: activeBrand?.entityId === node.entityId,
+                            underline: sort === key,
                           }
                         )}
                       >
                         <Link
                           href={{
-                            pathname: getDesignerPath(node.path, category),
-                            query,
+                            pathname,
+                            query: filterQuery({ q, sort: key }),
                           }}
                         >
                           <a
-                            onClick={(e) => handleClick(e, 'brands')}
+                            onClick={(e) => handleClick(e, 'sort')}
                             className={
                               'block lg:inline-block px-4 py-2 lg:p-0 lg:my-2 lg:mx-4'
                             }
                           >
-                            {node.name}
+                            {text}
                           </a>
                         </Link>
                       </li>
@@ -267,9 +271,10 @@ export default function Search({ categories, brands }: SearchPropsType) {
             </div>
           </div>
         </div>
+
         {/* Products */}
-        <div className="col-span-8 order-3 lg:order-none">
-          {(q || activeCategory || activeBrand) && (
+        <div className="bg-white col-span-12 lg:col-span-8 order-3 lg:order-2">
+          {q || activeCategory || activeBrand ? (
             <div className="mb-12 transition ease-in duration-75">
               {data ? (
                 <>
@@ -311,6 +316,10 @@ export default function Search({ categories, brands }: SearchPropsType) {
                 <>Searching...</>
               )}
             </div>
+          ) : (
+            <div className="mb-12 transition ease-in duration-75">
+              <span className={cn('animated', {})}>Showing all products.</span>
+            </div>
           )}
           {data ? (
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -336,100 +345,6 @@ export default function Search({ categories, brands }: SearchPropsType) {
               ))}
             </div>
           )}{' '}
-        </div>
-
-        {/* Sort */}
-        <div className="col-span-8 lg:col-span-2 order-2 lg:order-none">
-          <div className="relative inline-block w-full">
-            <div className="lg:hidden">
-              <span className="rounded-md shadow-sm">
-                <button
-                  type="button"
-                  onClick={(e) => handleClick(e, 'sort')}
-                  className="flex justify-between w-full rounded-sm border border-accent-3 px-4 py-3 bg-accent-0 text-sm leading-5 font-medium text-accent-4 hover:text-accent-5 focus:outline-none focus:border-blue-300 focus:shadow-outline-normal active:bg-accent-1 active:text-accent-8 transition ease-in-out duration-150"
-                  id="options-menu"
-                  aria-haspopup="true"
-                  aria-expanded="true"
-                >
-                  {sort ? SORT[sort as keyof typeof SORT] : 'Relevance'}
-                  <svg
-                    className="-mr-1 ml-2 h-5 w-5"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                </button>
-              </span>
-            </div>
-            <div
-              className={`origin-top-left absolute lg:relative left-0 mt-2 w-full rounded-md shadow-lg lg:shadow-none z-10 mb-10 lg:block ${
-                activeFilter !== 'sort' || toggleFilter !== true ? 'hidden' : ''
-              }`}
-            >
-              <div className="rounded-sm bg-accent-0 shadow-xs lg:bg-none lg:shadow-none">
-                <div
-                  role="menu"
-                  aria-orientation="vertical"
-                  aria-labelledby="options-menu"
-                >
-                  <ul>
-                    <li
-                      className={cn(
-                        'block text-sm leading-5 text-accent-4 lg:text-base lg:no-underline lg:font-bold lg:tracking-wide hover:bg-accent-1 lg:hover:bg-transparent hover:text-accent-8 focus:outline-none focus:bg-accent-1 focus:text-accent-8',
-                        {
-                          underline: !sort,
-                        }
-                      )}
-                    >
-                      <Link href={{ pathname, query: filterQuery({ q }) }}>
-                        <a
-                          onClick={(e) => handleClick(e, 'sort')}
-                          className={
-                            'block lg:inline-block px-4 py-2 lg:p-0 lg:my-2 lg:mx-4'
-                          }
-                        >
-                          Relevance
-                        </a>
-                      </Link>
-                    </li>
-                    {Object.entries(SORT).map(([key, text]) => (
-                      <li
-                        key={key}
-                        className={cn(
-                          'block text-sm leading-5 text-accent-4 hover:bg-accent-1 lg:hover:bg-transparent hover:text-accent-8 focus:outline-none focus:bg-accent-1 focus:text-accent-8',
-                          {
-                            underline: sort === key,
-                          }
-                        )}
-                      >
-                        <Link
-                          href={{
-                            pathname,
-                            query: filterQuery({ q, sort: key }),
-                          }}
-                        >
-                          <a
-                            onClick={(e) => handleClick(e, 'sort')}
-                            className={
-                              'block lg:inline-block px-4 py-2 lg:p-0 lg:my-2 lg:mx-4'
-                            }
-                          >
-                            {text}
-                          </a>
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </Container>

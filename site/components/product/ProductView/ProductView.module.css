@@ -1,31 +1,19 @@
 .root {
-  @apply relative grid items-start gap-1 grid-cols-1 overflow-x-hidden;
+  @apply relative grid items-start gap-1 grid-cols-1 max-w-7xl mx-auto border-2 border-secondary py-8;
   min-height: auto;
 }
 
+.image span img {
+  @apply select-none;
+}
+
 .main {
-  @apply relative px-0 pb-0 box-border  flex flex-col col-span-1;
+  @apply relative px-0 pb-0 box-border flex flex-col col-span-1;
   min-height: 500px;
 }
 
 .sidebar {
   @apply flex flex-col col-span-1 mx-auto max-w-8xl px-6 py-6 w-full h-full;
-}
-
-.sliderContainer {
-  @apply flex items-center justify-center overflow-x-hidden bg-violet;
-}
-
-.imageContainer {
-  @apply text-center h-full relative;
-}
-
-.imageContainer > span {
-  height: 100% !important;
-}
-
-.sliderContainer .img {
-  @apply w-full h-full max-h-full object-cover;
 }
 
 .button {
@@ -54,6 +42,6 @@
   }
 
   .imageContainer {
-    max-height: 600px;
+    /* max-height: 600px; */
   }
 }

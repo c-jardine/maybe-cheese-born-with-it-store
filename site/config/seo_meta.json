@@ -1,25 +1,25 @@
 {
-  "title": "ACME Storefront | Powered by Next.js Commerce",
-  "titleTemplate": "%s - ACME Storefront",
-  "description": "Next.js Commerce - https://www.nextjs.org/commerce",
+  "title": "Shop Maybe Cheese Born With It",
+  "titleTemplate": "%s - Maybe Cheese Born With It",
+  "description": "Get your Maybe Cheese Born With It merch today!",
   "openGraph": {
-    "title": "ACME Storefront | Powered by Next.js Commerce",
-    "description": "Next.js Commerce - https://www.nextjs.org/commerce",
+    "title": "Shop Maybe Cheese Born With It",
+    "description": "Get your Maybe Cheese Born With It merch today!",
     "type": "website",
-    "url": "https://nextjs.org/commerce",
-    "site_name": "Next.js Commerce",
+    "url": "https://shop.maybecheesebornwithit.com",
+    "site_name": "Shop Maybe Cheese Born With It",
     "images": [
       {
-        "url": "/card.png",
+        "url": "/card.jpg",
         "width": "800",
         "height": "600",
-        "alt": "Next.js Commerce"
+        "alt": "Shop Maybe Cheese Born With It"
       }
     ]
   },
   "twitter": {
-    "handle": "@nextjs",
-    "site": "@nextjs",
+    "handle": "@kepluxdev",
+    "site": "@kepluxdev",
     "cardType": "summary_large_image"
   }
 }

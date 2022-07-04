@@ -20,6 +20,7 @@ const SidebarLayout: FC<ComponentProps> = ({
       <header className={s.header}>
         {handleClose && (
           <button
+            type="button"
             onClick={handleClose}
             aria-label="Close"
             className="hover:text-accent-5 transition ease-in-out duration-150 flex items-center focus:outline-none mr-6"
@@ -30,6 +31,7 @@ const SidebarLayout: FC<ComponentProps> = ({
         )}
         {handleBack && (
           <button
+            type="button"
             onClick={handleBack}
             aria-label="Go back"
             className="hover:text-accent-5 transition ease-in-out duration-150 flex items-center focus:outline-none"

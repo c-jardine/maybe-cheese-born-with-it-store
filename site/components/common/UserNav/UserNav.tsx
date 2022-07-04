@@ -40,9 +40,9 @@ const UserNav: React.FC<{
     <nav className={cn(s.root, className)}>
       <ul className={s.list}>
         {process.env.COMMERCE_CART_ENABLED && (
-          <li className={s.item}>
+          <li className="ml-6 cursor-pointer relative transition ease-in-out duration-100 flex items-center outline-none">
             <Button
-              className={s.item}
+              className="ml-6 cursor-pointer relative transition ease-in-out duration-100 flex items-center outline-none"
               variant="naked"
               onClick={() => {
                 setSidebarView('CART_VIEW')
@@ -50,9 +50,11 @@ const UserNav: React.FC<{
               }}
               aria-label={`Cart items: ${itemsCount}`}
             >
-              <Bag />
+              <Bag className="stroke-secondary" />
               {itemsCount > 0 && (
-                <span className={s.bagCount}>{itemsCount}</span>
+                <span className="px-[2.5px] min-w-[1.25rem] min-h-[1.25rem] border border-primary bg-brand-secondary text-primary absolute rounded-full right-3 top-3 flex items-center justify-center font-bold text-xs">
+                  {itemsCount}
+                </span>
               )}
             </Button>
           </li>
@@ -66,7 +68,7 @@ const UserNav: React.FC<{
             </Link>
           </li>
         )}
-        {process.env.COMMERCE_CUSTOMERAUTH_ENABLED && (
+        {/* {process.env.COMMERCE_CUSTOMERAUTH_ENABLED && (
           <li className={s.item}>
             <Dropdown>
               <DropdownTrigger>
@@ -81,8 +83,8 @@ const UserNav: React.FC<{
               <CustomerMenuContent />
             </Dropdown>
           </li>
-        )}
-        <li className={s.mobileMenu}>
+        )} */}
+        {/* <li className={s.mobileMenu}>
           <Button
             className={s.item}
             aria-label="Menu"
@@ -94,7 +96,7 @@ const UserNav: React.FC<{
           >
             <Menu />
           </Button>
-        </li>
+        </li> */}
       </ul>
     </nav>
   )

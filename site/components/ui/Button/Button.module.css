@@ -1,14 +1,10 @@
 .root {
-  @apply bg-accent-9 text-accent-0 cursor-pointer inline-flex
+  @apply bg-brand-secondary text-primary cursor-pointer inline-flex
   px-10 py-5 leading-6 transition ease-in-out duration-150
-  shadow-sm text-center justify-center uppercase
-  border border-transparent items-center text-sm font-semibold
-  tracking-wide;
+  shadow-sm text-center justify-center uppercase rounded-lg
+  border border-transparent items-center text-lg font-bold
+  tracking-wide hover:bg-brand-secondary-dark;
   max-height: 64px;
-}
-
-.root:hover {
-  @apply border-accent-9 bg-accent-6;
 }
 
 .root:focus {

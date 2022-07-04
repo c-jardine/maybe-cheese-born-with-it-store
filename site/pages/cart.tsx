@@ -68,7 +68,7 @@ export default function Cart() {
               <Cross width={24} height={24} />
             </span>
             <h2 className="pt-6 text-xl font-light text-center">
-              We couldn’t process the purchase. Please check your card
+              We couldn't process the purchase. Please check your card
               information and try again.
             </h2>
           </div>

@@ -1,4 +1,9 @@
 :root {
+  --brand-primary-light: #f472b6;
+  --brand-primary: #db2777;
+  --brand-secondary-light: #fde047;
+  --brand-secondary: #facc15;
+  --brand-secondary-dark: #eab308;
   --primary: #ffffff;
   --primary-2: #f1f3f5;
   --secondary: #000000;
@@ -15,7 +20,7 @@
   --red: #da3c3c;
   --purple: #f81ce5;
   --blue: #0070f3;
-  --pink: #ff0080;
+  --pink: #db2777;
   --pink-light: #ff379c;
   --magenta: #eb367f;
   --violet: #7928ca;
@@ -34,29 +39,7 @@
     'Helvetica', sans-serif;
 }
 
-[data-theme='dark'] {
-  --primary: #000000;
-  --primary-2: #111;
-  --secondary: #ffffff;
-  --secondary-2: #f1f3f5;
-  --hover: rgba(255, 255, 255, 0.075);
-  --hover-1: rgba(255, 255, 255, 0.15);
-  --hover-2: rgba(255, 255, 255, 0.25);
-  --selection: var(--purple);
-  --text-base: white;
-  --text-primary: white;
-  --text-secondary: black;
-  --accent-9: #fff;
-  --accent-8: #fafafa;
-  --accent-7: #eaeaea;
-  --accent-6: #999999;
-  --accent-5: #888888;
-  --accent-4: #666666;
-  --accent-3: #444444;
-  --accent-2: #333333;
-  --accent-1: #111111;
-  --accent-0: #000;
-}
+/*  */
 
 *,
 *:before,
@@ -118,4 +101,8 @@ a {
   to {
     opacity: 1;
   }
+}
+
+.keen-slider__slide > span {
+  @apply rounded-lg after:content-[""] after:absolute after:w-full after:h-full after:top-0 after:left-0 after:rounded-lg after:border-4 after:border-black;
 }

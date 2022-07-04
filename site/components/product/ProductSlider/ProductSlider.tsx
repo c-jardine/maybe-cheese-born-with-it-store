@@ -12,13 +12,14 @@ import s from './ProductSlider.module.css'
 import ProductSliderControl from '../ProductSliderControl'
 
 interface ProductSliderProps {
+  hasAlbum: boolean
   children: React.ReactNode[]
   className?: string
 }
 
 const ProductSlider: React.FC<ProductSliderProps> = ({
+  hasAlbum,
   children,
-  className = '',
 }) => {
   const [currentSlide, setCurrentSlide] = useState(0)
   const [isMounted, setIsMounted] = useState(false)
@@ -78,12 +79,14 @@ const ProductSlider: React.FC<ProductSliderProps> = ({
   const onNext = React.useCallback(() => slider.current?.next(), [slider])
 
   return (
-    <div className={cn(s.root, className)} ref={sliderContainerRef}>
+    <div ref={sliderContainerRef}>
       <div
         ref={ref}
         className={cn(s.slider, { [s.show]: isMounted }, 'keen-slider')}
       >
-        {slider && <ProductSliderControl onPrev={onPrev} onNext={onNext} />}
+        {slider && hasAlbum && (
+          <ProductSliderControl onPrev={onPrev} onNext={onNext} />
+        )}
         {Children.map(children, (child) => {
           // Add the keen-slider__slide className to children
           if (isValidElement(child)) {
@@ -93,7 +96,7 @@ const ProductSlider: React.FC<ProductSliderProps> = ({
                 ...child.props,
                 className: `${
                   child.props.className ? `${child.props.className} ` : ''
-                }keen-slider__slide`,
+                } keen-slider__slide`,
               },
             }
           }
@@ -101,17 +104,28 @@ const ProductSlider: React.FC<ProductSliderProps> = ({
         })}
       </div>
 
-      <a.div className={s.album} ref={thumbsContainerRef}>
+      <a.div
+        className="mt-4 flex gap-1 overflow-x-scroll overflow-y-hidden"
+        ref={thumbsContainerRef}
+      >
         {slider &&
+          hasAlbum &&
           Children.map(children, (child, idx) => {
             if (isValidElement(child)) {
               return {
                 ...child,
                 props: {
                   ...child.props,
-                  className: cn(child.props.className, s.thumb, {
-                    [s.selected]: currentSlide === idx,
-                  }),
+                  className: cn(
+                    child.props.className,
+                    s.thumb,
+                    { [s.selected]: currentSlide === idx },
+                    'cursor-pointer rounded-lg overflow-hidden w-48 h-48 relative shrink-0 transition',
+
+                    currentSlide === idx
+                      ? ''
+                      : 'brightness-50 hover:brightness-100'
+                  ),
                   id: `thumb-${idx}`,
                   onClick: () => {
                     slider.current?.moveToIdx(idx)
