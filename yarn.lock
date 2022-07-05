@@ -1692,7 +1692,7 @@
     "@typescript-eslint/types" "5.27.0"
     "eslint-visitor-keys" "^3.3.0"
 
-"@vercel/commerce-bigcommerce@^0.0.1", "@vercel/commerce-bigcommerce@file:/Users/chris/Documents/Keplux/Customers/Vermonte, Sugar/store/packages/bigcommerce":
+"@vercel/commerce-bigcommerce@^0.0.1", "@vercel/commerce-bigcommerce@file:/Users/chris/Documents/Keplux/Customers/Vermonte, Sugar/yee/packages/bigcommerce":
   "resolved" "file:packages/bigcommerce"
   "version" "0.0.1"
   dependencies:
@@ -1703,7 +1703,7 @@
     "lodash.debounce" "^4.0.8"
     "uuidv4" "^6.2.12"
 
-"@vercel/commerce-commercejs@^0.0.1", "@vercel/commerce-commercejs@file:/Users/chris/Documents/Keplux/Customers/Vermonte, Sugar/store/packages/commercejs":
+"@vercel/commerce-commercejs@^0.0.1", "@vercel/commerce-commercejs@file:/Users/chris/Documents/Keplux/Customers/Vermonte, Sugar/yee/packages/commercejs":
   "resolved" "file:packages/commercejs"
   "version" "0.0.1"
   dependencies:
@@ -1711,7 +1711,7 @@
     "@vercel/commerce" "^0.0.1"
     "lodash.debounce" "^4.0.8"
 
-"@vercel/commerce-kibocommerce@^0.0.1", "@vercel/commerce-kibocommerce@file:/Users/chris/Documents/Keplux/Customers/Vermonte, Sugar/store/packages/kibocommerce":
+"@vercel/commerce-kibocommerce@^0.0.1", "@vercel/commerce-kibocommerce@file:/Users/chris/Documents/Keplux/Customers/Vermonte, Sugar/yee/packages/kibocommerce":
   "resolved" "file:packages/kibocommerce"
   "version" "0.0.1"
   dependencies:
@@ -1719,14 +1719,14 @@
     "@vercel/fetch" "^6.1.1"
     "lodash.debounce" "^4.0.8"
 
-"@vercel/commerce-local@^0.0.1", "@vercel/commerce-local@file:/Users/chris/Documents/Keplux/Customers/Vermonte, Sugar/store/packages/local":
+"@vercel/commerce-local@^0.0.1", "@vercel/commerce-local@file:/Users/chris/Documents/Keplux/Customers/Vermonte, Sugar/yee/packages/local":
   "resolved" "file:packages/local"
   "version" "0.0.1"
   dependencies:
     "@vercel/commerce" "^0.0.1"
     "@vercel/fetch" "^6.1.1"
 
-"@vercel/commerce-ordercloud@^0.0.1", "@vercel/commerce-ordercloud@file:/Users/chris/Documents/Keplux/Customers/Vermonte, Sugar/store/packages/ordercloud":
+"@vercel/commerce-ordercloud@^0.0.1", "@vercel/commerce-ordercloud@file:/Users/chris/Documents/Keplux/Customers/Vermonte, Sugar/yee/packages/ordercloud":
   "resolved" "file:packages/ordercloud"
   "version" "0.0.1"
   dependencies:
@@ -1735,7 +1735,7 @@
     "lodash.debounce" "^4.0.8"
     "stripe" "^8.197.0"
 
-"@vercel/commerce-saleor@^0.0.1", "@vercel/commerce-saleor@file:/Users/chris/Documents/Keplux/Customers/Vermonte, Sugar/store/packages/saleor":
+"@vercel/commerce-saleor@^0.0.1", "@vercel/commerce-saleor@file:/Users/chris/Documents/Keplux/Customers/Vermonte, Sugar/yee/packages/saleor":
   "resolved" "file:packages/saleor"
   "version" "0.0.1"
   dependencies:
@@ -1743,7 +1743,7 @@
     "@vercel/fetch" "^6.1.1"
     "lodash.debounce" "^4.0.8"
 
-"@vercel/commerce-sfcc@file:/Users/chris/Documents/Keplux/Customers/Vermonte, Sugar/store/packages/sfcc":
+"@vercel/commerce-sfcc@file:/Users/chris/Documents/Keplux/Customers/Vermonte, Sugar/yee/packages/sfcc":
   "resolved" "file:packages/sfcc"
   "version" "0.0.1"
   dependencies:
@@ -1751,7 +1751,7 @@
     "@vercel/fetch" "^6.1.1"
     "commerce-sdk" "^2.7.0"
 
-"@vercel/commerce-shopify@^0.0.1", "@vercel/commerce-shopify@file:/Users/chris/Documents/Keplux/Customers/Vermonte, Sugar/store/packages/shopify":
+"@vercel/commerce-shopify@^0.0.1", "@vercel/commerce-shopify@file:/Users/chris/Documents/Keplux/Customers/Vermonte, Sugar/yee/packages/shopify":
   "resolved" "file:packages/shopify"
   "version" "0.0.1"
   dependencies:
@@ -1759,7 +1759,7 @@
     "@vercel/fetch" "^6.1.1"
     "lodash.debounce" "^4.0.8"
 
-"@vercel/commerce-spree@^0.0.1", "@vercel/commerce-spree@file:/Users/chris/Documents/Keplux/Customers/Vermonte, Sugar/store/packages/spree":
+"@vercel/commerce-spree@^0.0.1", "@vercel/commerce-spree@file:/Users/chris/Documents/Keplux/Customers/Vermonte, Sugar/yee/packages/spree":
   "resolved" "file:packages/spree"
   "version" "0.0.1"
   dependencies:
@@ -1769,7 +1769,7 @@
     "lodash.debounce" "^4.0.8"
     "swr" "^1.2.0"
 
-"@vercel/commerce-swell@^0.0.1", "@vercel/commerce-swell@file:/Users/chris/Documents/Keplux/Customers/Vermonte, Sugar/store/packages/swell":
+"@vercel/commerce-swell@^0.0.1", "@vercel/commerce-swell@file:/Users/chris/Documents/Keplux/Customers/Vermonte, Sugar/yee/packages/swell":
   "resolved" "file:packages/swell"
   "version" "0.0.1"
   dependencies:
@@ -1778,14 +1778,14 @@
     "lodash.debounce" "^4.0.8"
     "swell-js" "^4.0.0-next.0"
 
-"@vercel/commerce-vendure@^0.0.1", "@vercel/commerce-vendure@file:/Users/chris/Documents/Keplux/Customers/Vermonte, Sugar/store/packages/vendure":
+"@vercel/commerce-vendure@^0.0.1", "@vercel/commerce-vendure@file:/Users/chris/Documents/Keplux/Customers/Vermonte, Sugar/yee/packages/vendure":
   "resolved" "file:packages/vendure"
   "version" "0.0.1"
   dependencies:
     "@vercel/commerce" "^0.0.1"
     "@vercel/fetch" "^6.1.1"
 
-"@vercel/commerce@^0.0.1", "@vercel/commerce@file:/Users/chris/Documents/Keplux/Customers/Vermonte, Sugar/store/packages/commerce":
+"@vercel/commerce@^0.0.1", "@vercel/commerce@file:/Users/chris/Documents/Keplux/Customers/Vermonte, Sugar/yee/packages/commerce":
   "resolved" "file:packages/commerce"
   "version" "0.0.1"
   dependencies:
@@ -5634,7 +5634,7 @@
   "resolved" "https://registry.npmjs.org/natural-compare/-/natural-compare-1.4.0.tgz"
   "version" "1.4.0"
 
-"next-commerce@file:/Users/chris/Documents/Keplux/Customers/Vermonte, Sugar/store/site":
+"next-commerce@file:/Users/chris/Documents/Keplux/Customers/Vermonte, Sugar/yee/site":
   "resolved" "file:site"
   "version" "0.0.1"
   dependencies:
@@ -7620,7 +7620,7 @@
     "mkdirp" "^1.0.3"
     "yallist" "^4.0.0"
 
-"taskr-swc@^0.0.1", "taskr-swc@file:/Users/chris/Documents/Keplux/Customers/Vermonte, Sugar/store/packages/taskr-swc":
+"taskr-swc@^0.0.1", "taskr-swc@file:/Users/chris/Documents/Keplux/Customers/Vermonte, Sugar/yee/packages/taskr-swc":
   "resolved" "file:packages/taskr-swc"
   "version" "0.0.1"
 

@@ -78,7 +78,7 @@ const ProductView: FC<ProductViewProps> = ({ product, relatedProducts }) => {
         </section>
       </div>
 
-      <div className='pt-16 max-w-5xl mx-auto'>
+      <div className='pt-16 px-4 max-w-5xl mx-auto'>
         <h3 className='font-bold tracking-wider'>Return Policy</h3>
         <p className='text-accent-5 text-sm'>
           Per the Known Ferengi Rules of Acquistion: Once you have their
