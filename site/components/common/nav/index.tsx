@@ -3,8 +3,8 @@ import { Bag, Cross, Menu } from '@components/icons'
 import { Button, useUI } from '@components/ui'
 import { Disclosure } from '@headlessui/react'
 import useCart from '@framework/cart/use-cart'
-import { useRouter } from 'next/router';
-import ChevronLeft from '../../icons/ChevronLeft';
+import { useRouter } from 'next/router'
+import ChevronLeft from '../../icons/ChevronLeft'
 
 const navItems = [
   { label: 'Home', href: 'https://www.maybecheesebornwithit.com' },
@@ -51,17 +51,14 @@ export const Nav = () => {
     'border-brand-primary hover:border-brand-primary-dark transition'
   const inactive = 'border-transparent hover:border-brand-primary transition'
 
-  const router = useRouter();
+  const router = useRouter()
 
   return (
-    <Disclosure
-      as="nav"
-      className="border-y-2 border-black shadow sticky top-0 left-0 z-50"
-    >
+    <Disclosure as="nav" className="shadow sticky top-0 left-0 z-50">
       {({ open }) => (
         <>
           {/* Desktop nav */}
-          <div className="hidden sm:block bg-white w-screen">
+          <div className="border-y-2 border-black hidden sm:block bg-white w-screen">
             <div className="max-w-6xl relative mx-auto">
               {router.pathname !== '/' && (
                 <button
@@ -89,9 +86,9 @@ export const Nav = () => {
                 })}
               </div>
               {process.env.COMMERCE_CART_ENABLED && (
-                <li className="group absolute top-1/2 -translate-y-1/2 right-4 cursor-pointer transition ease-in-out duration-100 flex items-center">
+                <li className="group absolute top-1/2 -translate-y-1/2 right-4 hover:bg-yellow-400 p-2 rounded-md transition cursor-pointer flex items-center">
                   <Button
-                    className="ml-6 relative transition ease-in-out duration-100 flex items-center group-hover:scale-110"
+                    className="relative transition ease-in-out duration-100 flex items-center"
                     variant="naked"
                     onClick={() => {
                       setSidebarView('CART_VIEW')
@@ -101,7 +98,7 @@ export const Nav = () => {
                   >
                     <Bag className="stroke-secondary" />
                     {itemsCount > 0 && (
-                      <span className="w-[1.25rem] h-[1.25rem] border border-primary bg-brand-secondary text-primary absolute rounded-full right-3 top-3 flex items-center justify-center font-bold text-[12px]">
+                      <span className="w-[1.25rem] h-[1.25rem] border-[2px] border-primary transition group-hover:border-yellow-400 bg-brand-secondary group-hover:bg-white text-primary absolute rounded-full right-3 top-3 flex items-center justify-center font-bold text-[10px]">
                         {itemsCount}
                       </span>
                     )}
@@ -112,8 +109,34 @@ export const Nav = () => {
           </div>
 
           {/* Mobile nav */}
-          <div className="flex items-center justify-between sm:hidden bg-white p-2">
+          <div className="flex items-center justify-between sm:hidden bg-white  border-y-2 border-black p-2">
             {/* Mobile menu button */}
+            {process.env.COMMERCE_CART_ENABLED && (
+              <li className="group cursor-pointer transition flex p-2 rounded-md hover:bg-yellow-400">
+                <Button
+                  className="relative transition ease-in-out duration-100 flex items-center"
+                  variant="naked"
+                  onClick={() => {
+                    setSidebarView('CART_VIEW')
+                    openSidebar()
+                  }}
+                  aria-label={`Cart items: ${itemsCount}`}
+                >
+                  <Bag className="stroke-secondary" />
+                  {itemsCount > 0 && (
+                    <span className="w-[1.25rem] h-[1.25rem] border-[2px] border-primary group-hover:border-yellow-400 bg-brand-secondary group-hover:bg-white text-primary absolute rounded-full left-3 top-3 flex items-center justify-center font-bold text-[10px]">
+                      {itemsCount}
+                    </span>
+                  )}
+                </Button>
+              </li>
+            )}
+            <a
+              href="https://www.maybecheesebornwithit.com"
+              className="cursor-pointer font-display text-lg text-yellow-500 font-extrabold [text-shadow:_-1px_1px_0px_#CE5937]"
+            >
+              CHEESE
+            </a>
             <Disclosure.Button
               className={`${
                 open ? 'bg-brand-secondary-dark' : ''
@@ -129,26 +152,6 @@ export const Nav = () => {
                 <Menu className="block h-6 w-6" aria-hidden="true" />
               )}
             </Disclosure.Button>
-            {process.env.COMMERCE_CART_ENABLED && (
-              <li className="group absolute top-1/2 -translate-y-1/2 right-4 cursor-pointer transition ease-in-out duration-100 flex items-center">
-                <Button
-                  className="ml-6 relative transition ease-in-out duration-100 flex items-center group-hover:scale-110"
-                  variant="naked"
-                  onClick={() => {
-                    setSidebarView('CART_VIEW')
-                    openSidebar()
-                  }}
-                  aria-label={`Cart items: ${itemsCount}`}
-                >
-                  <Bag className="stroke-secondary" />
-                  {itemsCount > 0 && (
-                    <span className="w-[1.25rem] h-[1.25rem] border border-primary bg-brand-secondary text-primary absolute rounded-full right-3 top-3 flex items-center justify-center font-bold text-[12px]">
-                      {itemsCount}
-                    </span>
-                  )}
-                </Button>
-              </li>
-            )}
           </div>
 
           <Disclosure.Panel className="sm:hidden bg-brand-secondary shadow-lg border-b-2 border-black">
